@@ -16,16 +16,6 @@ class Fuel {
       @required this.otp,
       this.documentId});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'userId': userId,
-      'amount': amount,
-      'ltr': ltr,
-      'timestamp': timestamp,
-      'otp': otp,
-    };
-  }
-
   static Fuel fromMap(Map<String, dynamic> map, String documentId) {
     if (map == null) return null;
 
@@ -36,5 +26,15 @@ class Fuel {
         userId: map['userId'],
         timestamp: map['timestamp'],
         documentId: map['documentId']);
+  }
+  
+  Map<String, dynamic> toMap() {
+    return {
+      'userId': userId,
+      'amount': amount,
+      'ltr': ltr,
+      'timestamp': timestamp,
+      'otp': otp,
+    };
   }
 }

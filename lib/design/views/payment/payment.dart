@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:paystack_manager/paystack_pay_manager.dart';
 
 class Payment extends StatefulWidget {
   Payment({Key key, this.title}) : super(key: key);

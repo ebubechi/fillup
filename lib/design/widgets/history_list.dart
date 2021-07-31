@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/style/colors/colors.dart';
 import 'package:customer/style/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:customer/models/voucher.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 class FuelItem extends StatelessWidget {
   final Fuel fuel;

@@ -75,23 +75,6 @@ class FirestoreService {
     }
   }
 
-  // Future getFuelsOnceOff() async {
-  //   try{
-  //     var fuelDocumentSnapshot = await _fuelCollectionReference.orderBy('timestamp', descending: true).getDocuments();
-  //     if (fuelDocumentSnapshot.documents.isNotEmpty) {
-  //       return fuelDocumentSnapshot.documents
-  //           .map((snapshot) => Fuel.fromMap(snapshot.data, snapshot.documentID))
-  //           .where((mappedItem) => mappedItem.amount != null)
-  //           .toList();
-  //     }
-  //   }catch (e) {
-  //     if (e is PlatformException) {
-  //       return e.message;
-  //     }
-  //     return e.toString();
-  //   }
-  // }
-
   Stream getFuelsOnceOff() {
     _fuelCollection
         .orderBy("timestamp", descending: true)

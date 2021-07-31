@@ -1,7 +1,5 @@
 import 'package:customer/app/app.locator.dart';
-import 'package:customer/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:customer/services/function/firestore_services.dart';
 
