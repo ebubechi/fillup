@@ -2,18 +2,19 @@
 
 A fuel self-service delivery scheme app built with Flutter and the stacked architecture.
 
-## how to run
- * download and install android studio with vs code 
+## How to run
+ * Download and install android studio with vs code 
  * install flutter and dart
  * open project and run:
     - flutter pub get
     - flutter run
 
-## tech stack
+## Tech stack
  * stacked
  * stacked service
+ * firebase and cloud firestore
 
-## project screenshots
+## Project screenshots
 |                |              | 
 | :------------- | :----------: | 
 ![ splash page](https://raw.githubusercontent.com/ebubechi/fillup/main/assets/splash.png) | ![ signin page ](https://raw.githubusercontent.com/ebubechi/fillup/main/assets/signin.png)
