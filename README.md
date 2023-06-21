@@ -2,14 +2,16 @@
 
 A fuel self-service delivery scheme app built with Flutter and the stacked architecture.
 
-## this is the readme.md file
-
 ## how to run
  * download and install android studio with vs code 
  * install flutter and dart
  * open project and run:
     - flutter pub get
     - flutter run
+
+## tech stack
+ * stacked
+ * stacked service
 
 ## project screenshots
 |                |              | 
