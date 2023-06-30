@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Drawhorizontalline extends CustomPainter {
-  Size _sized;
-  Paint _paint;
+  late Size _sized;
+  late Paint _paint;
   Drawhorizontalline({sized}) {
     _sized = sized;
     _paint = Paint()
@@ -23,8 +23,8 @@ class Drawhorizontalline extends CustomPainter {
 }
 
 class Drawverticalline extends CustomPainter {
-  Paint _paint;
-  Size _sized;
+  late Paint _paint;
+  late Size _sized;
   Drawverticalline({sized}) {
     _sized = sized;
     _paint = Paint()
@@ -46,8 +46,8 @@ class Drawverticalline extends CustomPainter {
 }
 
 class Drawverticalline2 extends CustomPainter {
-  Paint _paint;
-  Size _sized;
+  late Paint _paint;
+  late Size _sized;
   Drawverticalline2({sized}) {
     _sized = sized;
     _paint = Paint()

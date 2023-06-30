@@ -1,7 +1,7 @@
 import 'package:customer/app/app.locator.dart';
 import 'package:customer/services/function/firestore_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -16,7 +16,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
   final _firebaseAuth = FirebaseAuth.instance;
 
   final String successRoute;
-  AuthenticationViewModel({@required this.successRoute});
+  AuthenticationViewModel({required this.successRoute});
 
   @override
   void setFormStatus() {}
@@ -34,7 +34,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
 
   Future<String> isAdmin() async {
     print("**** The admin model is Loading... ****");
-    String myUser = await _firestoreServices.getUserRole(userID);
+    String myUser = await _firestoreServices.getUserRole(userID!);
     return myUser.toString();
 
     // print("**** This is admin model user ****");
@@ -46,7 +46,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
     // }
   }
 
-  String get userID {
+  String? get userID {
     return _firebaseAuth.currentUser?.uid;
   }
 

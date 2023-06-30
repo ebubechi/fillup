@@ -8,7 +8,7 @@ class FuelItem extends StatelessWidget {
   final Fuel fuel;
   final model;
 
-  const FuelItem({Key key, this.fuel, this.model}) : super(key: key);
+  const FuelItem({super.key, required this.fuel, this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class FuelItem extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  time_001 ?? "time",
+                  time_001,
                   style: ktsMediumWhite,
                 )
               ],
@@ -68,7 +68,7 @@ class FuelItem extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                fuel.otp.toString() ?? "time",
+                                fuel.otp.toString(),
                                 style: ktsSmallWhite,
                               ),
                             )
@@ -79,7 +79,7 @@ class FuelItem extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(30.0),
                           child: Text(
-                            fuel.amount.toString() ?? "amount",
+                            fuel.amount.toString(),
                             style: ktsMediumWhite,
                           ),
                         )

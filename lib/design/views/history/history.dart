@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class History extends StatelessWidget {
-  const History({Key key}) : super(key: key);
+  const History({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HistoryViewModel>.nonReactive(
-      onModelReady: (model) => model.listenToFuels(),
+      onViewModelReady: (model) => model.listenToFuels(),
         builder: (context, model, child) => Scaffold(
             appBar: AppBar(
               elevation: 0.0,

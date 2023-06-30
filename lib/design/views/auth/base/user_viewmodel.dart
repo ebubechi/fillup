@@ -9,15 +9,15 @@ class UserViewModel extends BaseViewModel {
 
   // Users currentUser;
 
-  String _userID() => firebaseAuth.currentUser?.uid;
+  String? _userID() => firebaseAuth.currentUser?.uid;
 
-  String get userID => _userID();
+  String? get userID => _userID();
 
   // void printt() => print(userID);
 
   Future<String> currentUserEmail() async {
     print("this is the current user ID: $userID");
-    String currentUserEmail = await firestoreService.getUser(userID);
+    String currentUserEmail = await firestoreService.getUser(userID!);
     // String currentUserEmail = currentUser.toString();
     print(currentUserEmail);
 
@@ -25,7 +25,7 @@ class UserViewModel extends BaseViewModel {
   }
 
   Future currentUserFullName() async {
-    String currentUserFullName = await firestoreService.getUser(userID);
+    String currentUserFullName = await firestoreService.getUser(userID!);
     // String currentUserEmail = currentUser.toString();
     print(currentUserFullName);
 

@@ -12,30 +12,30 @@ class AuthenticationLayout extends StatelessWidget {
   final String minorButtonTitle;
   final Widget form;
   final bool showTermsText;
-  final Function onMainButtonTapped;
-  final Function onMinorButtonTapped;
-  final Function onCreateAccountTapped;
-  final Function onForgotPassword;
-  final Function onBackPressed;
+  final VoidCallback? onMainButtonTapped;
+  final VoidCallback? onMinorButtonTapped;
+  final VoidCallback? onCreateAccountTapped;
+  final VoidCallback? onForgotPassword;
+  final VoidCallback? onBackPressed;
   final String validationMessage;
   final bool busy;
 
   const AuthenticationLayout({
-    Key key,
-    this.title,
-    this.subtitle,
-    this.mainButtonTitle,
-    this.minorButtonTitle,
-    this.form,
-    this.onMainButtonTapped,
-    this.onMinorButtonTapped,
-    this.onCreateAccountTapped,
-    this.onForgotPassword,
-    this.onBackPressed,
-    this.validationMessage,
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.mainButtonTitle,
+    required this.minorButtonTitle,
+    required this.form,
+    required this.onMainButtonTapped,
+    required this.onMinorButtonTapped,
+    required this.onCreateAccountTapped,
+    required this.onForgotPassword,
+    required this.onBackPressed,
+    required this.validationMessage,
     this.showTermsText = false,
     this.busy = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,6 @@ class AuthenticationLayout extends StatelessWidget {
                   )),
             ),
           verticalSpaceRegular,
-          if (validationMessage != null)
             Text(
               validationMessage,
               style: TextStyle(
@@ -102,7 +101,7 @@ class AuthenticationLayout extends StatelessWidget {
                 fontSize: kBodyTextSize,
               ),
             ),
-          if (validationMessage != null) verticalSpaceRegular,
+           verticalSpaceRegular,
           GestureDetector(
             onTap: onMainButtonTapped,
             child: Container(

@@ -10,7 +10,7 @@ class CouponViewModel extends BaseViewModel {
   final FirestoreService firestoreService = locator<FirestoreService>();
 // final DialogService _dialogService = locator<DialogService>();
 
-  List<Fuel> _fuels;
+  late List<Fuel> _fuels;
   List<Fuel> get fuels => _fuels;
 
   String title = 'Generated Token';
@@ -38,7 +38,7 @@ class CouponViewModel extends BaseViewModel {
 
     firestoreService.getFuelsOnceOff().listen((fuelsData) {
       List<Fuel> updatedfuels = fuelsData;
-      if (updatedfuels != null && updatedfuels.length > 0) {
+      if (updatedfuels.length > 0) {
         _fuels = updatedfuels;
         notifyListeners();
       }

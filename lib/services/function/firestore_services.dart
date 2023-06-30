@@ -16,7 +16,7 @@ class FirestoreService {
   final CollectionReference _fuelRateCollection =
       FirebaseFirestore.instance.collection('fuelRate');
 
-  final StreamController<List<Fuel>> _fuelController =
+  final StreamController<List<Fuel?>> _fuelController =
       StreamController<List<Fuel>>.broadcast();
 
   // final StreamController<List<FuelRate>> _fuelPriceController =
@@ -37,7 +37,7 @@ class FirestoreService {
   Future getUserRole(String uid) async {
     try {
       var userData = await _usersCollection.doc(uid).get();
-      var usersRole = Users.fromData(userData.data());
+      var usersRole = Users.fromData(userData.data() as Map<String, dynamic>);
       print("#### this is admin service ####");
       print(usersRole.userRole);
       return usersRole.userRole;
@@ -52,7 +52,7 @@ class FirestoreService {
   Future getUser(String uid) async {
     try {
       var userData = await _usersCollection.doc(uid).get();
-      var user = Users.fromData(userData.data());
+      Users? user = Users.fromData(userData.data() as Map<String, dynamic>);
       print("#### this is User service ####");
       print(user);
       return user.email;
@@ -83,8 +83,9 @@ class FirestoreService {
         .listen((fuelSnapshot) {
       if (fuelSnapshot.docs.isNotEmpty) {
         var fuel = fuelSnapshot.docs
-            .map((snapshot) => Fuel.fromMap(snapshot.data(), snapshot.id))
-            .where((mappedItem) => mappedItem.amount != null)
+            .map((snapshot) => Fuel.fromMap(
+                snapshot.data() as Map<String, dynamic>, snapshot.id))
+            .where((mappedItem) => mappedItem?.amount != null)
             .toList();
 
         _fuelController.add(fuel);
@@ -101,8 +102,9 @@ class FirestoreService {
         .listen((fuelSnapshot) {
       if (fuelSnapshot.docs.isNotEmpty) {
         var fuel = fuelSnapshot.docs
-            .map((snapshot) => Fuel.fromMap(snapshot.data(), snapshot.id))
-            .where((mappedItem) => mappedItem.amount != null)
+            .map((snapshot) => Fuel.fromMap(
+                snapshot.data() as Map<String, dynamic>, snapshot.id))
+            .where((mappedItem) => mappedItem?.amount != null)
             .toList();
 
         _fuelController.add(fuel);
@@ -118,8 +120,9 @@ class FirestoreService {
         .listen((fuelSnapshot) {
       if (fuelSnapshot.docs.isNotEmpty) {
         var fuel = fuelSnapshot.docs
-            .map((snapshot) => Fuel.fromMap(snapshot.data(), snapshot.id))
-            .where((mappedItem) => mappedItem.amount != null)
+            .map((snapshot) => Fuel.fromMap(
+                snapshot.data() as Map<String, dynamic>, snapshot.id))
+            .where((mappedItem) => mappedItem?.amount != null)
             .toList();
 
         _fuelController.add(fuel);
@@ -140,7 +143,8 @@ class FirestoreService {
   }
 
   Future<int> getFuelPrice() async {
-    DocumentSnapshot fuelprice = await _fuelRateCollection.doc('price').snapshots().last;
+    DocumentSnapshot fuelprice =
+        await _fuelRateCollection.doc('price').snapshots().last;
     String fprice = fuelprice.toString();
     print('this is fprice $fprice');
     int ffprice = int.parse(fprice);

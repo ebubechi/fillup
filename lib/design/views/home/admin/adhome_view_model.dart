@@ -26,11 +26,14 @@ class AdHomeViewModel extends PaymentViewModel {
 
   // Future<dynamic> getUser() => firestoreService.getUser(userID);
 
-  Future updateFuelPrice({@required double amountPerLitre}) async {
+  Future updateFuelPrice({required double amountPerLitre}) async {
     setBusy(true);
 
     FuelRate pricedetail = FuelRate(
-        userId: userID, amountPerLitre: amountPerLitre, timeStamp: timeStamp);
+        userId: userID!,
+        amountPerLitre: amountPerLitre,
+        timeStamp: timeStamp,
+        documentId: '');
 
     await firestoreService.updateFuelPrice(pricedetail);
   }

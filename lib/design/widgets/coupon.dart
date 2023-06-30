@@ -9,9 +9,9 @@ class CouponItem extends StatelessWidget {
   final Fuel fuel;
 
   const CouponItem({
-    Key key,
-    @required this.fuel,
-  }) : super(key: key);
+    super.key,
+    required this.fuel,
+  });
 
   @override
   Widget build(BuildContext context) {

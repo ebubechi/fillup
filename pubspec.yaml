@@ -6,43 +6,44 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">3.0.3 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.0
+  cupertino_icons: 
 
   # Firebase
   firebase_core: 
-  firebase_auth: ^0.20.0+1
+  firebase_auth: 
   cloud_firestore: 
-  otp: ^2.0.3 
+  otp:  
   # Authentication
-  stacked_firebase_auth: ^0.1.0+1
+  stacked_firebase_auth: 
 
   # Stacked State Management
-  stacked: ^1.9.5
+  stacked: 
   stacked_services: 
 
   # hexcolor
-  hexcolor: ^1.0.6
+  hexcolor: 
 
   # Payment scheme
   # flutter_paystack: ^1.0.4
-  paystack_manager: ^1.0.4
-
+  # paystack_manager: 
+  paystack_manager_package: ^0.0.6 
 
   # Fonts
-  google_fonts: ^1.1.2
+  google_fonts: 
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner:
-  stacked_generator: ^0.1.1
+  stacked_generator: 
 flutter:
   uses-material-design: true
 

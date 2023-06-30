@@ -7,7 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:otp/otp.dart';
-import 'package:paystack_manager/paystack_manager.dart';
+// import 'package:paystack_manager/paystack_manager.dart';
+import 'package:paystack_manager_package/paystack_manager_package.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -29,9 +30,6 @@ class PaymentViewModel extends UserViewModel {
 
   dynamic time = DateFormat.yMMMMd().format(DateTime.now()).toString();
 
-  //  DateTime currentPhoneDate = DateTime.now(); //DateTime
-  //  Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate); //To TimeStamp
-  //  DateTime myDateTime = myTimeStamp.toDate();
 
   int _otpcode() {
     final code =
@@ -39,41 +37,43 @@ class PaymentViewModel extends UserViewModel {
     return code;
   }
 
-  Future addFuel({@required double amount, @required double litre}) async {
+  Future addFuel({required double amount, required double litre}) async {
     setBusy(true);
 
     await firestoreService.addFuel(Fuel(
-        userId: userID,
+        userId: userID!,
         amount: amount,
         otp: otpcode,
         timestamp: time,
-        ltr: litre));
+        ltr: litre, documentId: ''));
 
     setBusy(false);
   }
 
   Future<void> processPaymentt(
-      {BuildContext context,
-      @required int amount,
-      @required String email,
-      @required String fullname}) async {
+      {required BuildContext context,
+      required int amount,
+      required String email,
+      required String fullname}) async {
     try {
-      PaystackPayManager(context: context)
-        // Don't store your secret key on users device.
-        // Make sure this is retrive from your server at run time
-        ..setSecretKey("sk_test_a861a1f4cc0dcaad54b1fe2ecd7712d785e7e5f5")
-        //accepts widget
-        ..setCompanyAssetImage(Image(
+    } catch (error) {
+      print("Paymentt Error ==> $error");
+    }
+    // navToCoupon();
+      PaystackPayManager(
+        context: context,
+        secretKey: 'sk_test_5e30c6844febdebdfc3bead1762f08232d99261a',
+        reference: DateTime.now().millisecondsSinceEpoch.toString(),
+        amount: amount,
+        country: 'Nigeria',
+        currency: 'NGN',
+        email: email,
+        firstName: fullname,
+        lastName: '',
+        companyAssetImage: Image(
           image: AssetImage("assets/images/logo.png"),
-        ))
-        ..setAmount(amount ?? 15000)
-        // ..setReference("your-unique-transaction-reference")
-        ..setReference(DateTime.now().millisecondsSinceEpoch.toString())
-        ..setCurrency("NGN")
-        ..setEmail(email)
-        ..setFirstName(fullname)
-        ..setMetadata(
-          {
+        ),
+        metadata: {
             "custom_fields": [
               {
                 "value": "FillUp",
@@ -82,28 +82,75 @@ class PaymentViewModel extends UserViewModel {
               }
             ]
           },
-        )
-        ..onSuccesful(_onPaymenttSuccessful)
-        ..onPending(_onPaymenttPending)
-        ..onFailed(_onPaymenttFailed)
-        ..onCancel(_onPaymenttCancelled)
-        ..initialize();
-    } catch (error) {
-      print("Paymentt Error ==> $error");
-    }
-    // navToCoupon();
+        onSuccessful: (t) {return _onPaymenttSuccessful;},
+        onPending: (t) {return _onPaymenttPending;},
+        onFailed: (t) {return _onPaymenttFailed;},
+        onCancelled: (t) {return _onPaymenttCancelled;},
+        ).initialize();
+        
+      // PaystackPayManager(context: context)
+      //   // Don't store your secret key on users device.
+      //   // Make sure this is retrive from your server at run time
+      //   ..setSecretKey("sk_test_a861a1f4cc0dcaad54b1fe2ecd7712d785e7e5f5")
+      //   //accepts widget
+      //   ..setCompanyAssetImage(Image(
+      //     image: AssetImage("assets/images/logo.png"),
+      //   ))
+      //   ..setAmount(amount ?? 15000)
+      //   // ..setReference("your-unique-transaction-reference")
+      //   ..setReference(DateTime.now().millisecondsSinceEpoch.toString())
+      //   ..setCurrency("NGN")
+      //   ..setEmail(email)
+      //   ..setFirstName(fullname)
+      //   ..setMetadata(
+      //     {
+      //       "custom_fields": [
+      //         {
+      //           "value": "FillUp",
+      //           "display_name": "Payment_to",
+      //           "variable_name": "payment_to"
+      //         }
+      //       ]
+      //     },
+      //   )
+      //   ..onSuccesful(_onPaymenttSuccessful)
+      //   ..onPending(_onPaymenttPending)
+      //   ..onFailed(_onPaymenttFailed)
+      //   ..onCancel(_onPaymenttCancelled)
+      //   ..initialize();
   }
+
+  // void _onPaymenttSuccessful(Transaction transaction) {
+  //   print("Transaction was successful");
+  //   print("Transaction Message ===> ${transaction.message}");
+  //   print("Transaction Refrence ===> ${transaction.refrenceNumber}");
+  //   navToCoupon();
+  // }
+
+  // void _onPaymenttPending(Transaction transaction) {
+  //   print("Transaction is pendinng");
+  //   print("Transaction Refrence ===> ${transaction.refrenceNumber}");
+  // }
+
+  // void _onPaymenttFailed(Transaction transaction) {
+  //   print("Transaction failed");
+  //   print("Transaction Message ===> ${transaction.message}");
+  // }
+
+  // void _onPaymenttCancelled(Transaction transaction) {
+  //   print("Transaction was cancelled");
+  // }
 
   void _onPaymenttSuccessful(Transaction transaction) {
     print("Transaction was successful");
     print("Transaction Message ===> ${transaction.message}");
-    print("Transaction Refrence ===> ${transaction.refrenceNumber}");
+    print("Transaction Refrence ===> ${transaction.referenceNumber}");
     navToCoupon();
   }
 
   void _onPaymenttPending(Transaction transaction) {
     print("Transaction is pendinng");
-    print("Transaction Refrence ===> ${transaction.refrenceNumber}");
+    print("Transaction Refrence ===> ${transaction.referenceNumber}");
   }
 
   void _onPaymenttFailed(Transaction transaction) {

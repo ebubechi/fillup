@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 
 class Fuel {
   final double amount;
@@ -9,14 +9,14 @@ class Fuel {
   final String documentId;
 
   Fuel(
-      {@required this.userId,
-      @required this.amount,
-      @required this.ltr,
-      @required this.timestamp,
-      @required this.otp,
-      this.documentId});
+      {required this.userId,
+      required this.amount,
+      required this.ltr,
+      required this.timestamp,
+      required this.otp,
+      required this.documentId});
 
-  static Fuel fromMap(Map<String, dynamic> map, String documentId) {
+  static Fuel? fromMap(Map<String, dynamic> map, String documentId) {
     if (map == null) return null;
 
     return Fuel(

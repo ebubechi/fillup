@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class Coupon extends StatelessWidget {
-  const Coupon({Key key}) : super(key: key);
+  const Coupon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class Coupon extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               color: kcdeepBlack,
-              child: model.fuels == null
+              child:(model.fuels == null)
                   ? Center(
                       child: CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation(

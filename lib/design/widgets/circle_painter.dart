@@ -6,7 +6,7 @@ import 'package:flutter/animation.dart';
 class CirclePainter extends CustomPainter {
   CirclePainter(
       this._animation, {
-        @required this.color,
+        required this.color,
       }) : super(repaint: _animation);
   final Color color;
   final Animation<double> _animation;

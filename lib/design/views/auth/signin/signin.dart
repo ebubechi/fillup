@@ -7,26 +7,26 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'signin.form.dart';
-import 'signin_view_model.dart';
+// import 'signin_view_model.dart';
 
 @FormView(fields: [
   FormTextField(name: 'email'),
   FormTextField(name: 'password'),
 ])
 class SignIn extends StatelessWidget with $SignInView {
-  SignIn({Key key}) : super(key: key);
+  SignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignInViewModel>.reactive(
-        onModelReady: (model) => listenToFormUpdated(model),
+        onViewModelReady: (model) => listenToFormUpdated(model),
         builder: (context, model, child) => Scaffold(
             backgroundColor: kcdeepBlack,
             body: AuthenticationLayout(
               busy: model.isBusy,
               onMainButtonTapped: model.saveData,
               onCreateAccountTapped: model.navigateToCreateAccount,
-              validationMessage: model.validationMessage,
+              validationMessage: model.validationMessage!,
               title: 'SIGN IN',
               subtitle: '',
               mainButtonTitle: 'SIGN IN',
@@ -47,8 +47,8 @@ class SignIn extends StatelessWidget with $SignInView {
                 ],
               ),
               onMinorButtonTapped: model.navigateToCreateAccount,
-              onForgotPassword: () {},
+              onForgotPassword: () {}, onBackPressed: () {  },
             )),
-        viewModelBuilder: () => SignInViewModel());
+        viewModelBuilder: () => SignInViewModel(successRoute: ''));
   }
 }

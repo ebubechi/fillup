@@ -5,10 +5,10 @@ class Users {
   final String userRole;
 
   Users({
-    this.id,
-    this.fullName,
-    this.email,
-    this.userRole
+    required this.id,
+    required this.fullName,
+    required this.email,
+    required this.userRole
   });
 
   Users.fromData(Map<String, dynamic> data)

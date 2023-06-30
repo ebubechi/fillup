@@ -5,8 +5,8 @@ import './curve_wave.dart';
 
 
 class RipplesAnimation extends StatefulWidget {
-  const RipplesAnimation({Key key, this.size = 80.0, this.color = Colors.red,
-    this.onPressed, @required this.child,}) : super(key: key);
+  const RipplesAnimation({super.key, this.size = 80.0, this.color = Colors.red,
+    required this.onPressed, required this.child,});
   final double size;
   final Color color;
   final Widget child;
@@ -16,7 +16,7 @@ class RipplesAnimation extends StatefulWidget {
 }
 
 class _RipplesAnimationState extends State<RipplesAnimation> with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,7 @@ class _RipplesAnimationState extends State<RipplesAnimation> with TickerProvider
   }
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
   Widget _button() {
@@ -39,14 +39,14 @@ class _RipplesAnimationState extends State<RipplesAnimation> with TickerProvider
             gradient: RadialGradient(
               colors: <Color>[
                 widget.color,
-                Color.lerp(widget.color, Colors.black, .05)
+                Color.lerp(widget.color, Colors.black, .05)!
               ],
             ),
           ),
           child: ScaleTransition(
               scale: Tween(begin: 0.95, end: 1.0).animate(
                 CurvedAnimation(
-                  parent: _controller,
+                  parent: _controller!,
                   curve: const CurveWave(),
                 ),
               ),
@@ -64,7 +64,7 @@ class _RipplesAnimationState extends State<RipplesAnimation> with TickerProvider
       child: Center(
         child: CustomPaint(
           painter: CirclePainter(
-            _controller,
+            _controller!,
             color: widget.color,
           ),
           child: SizedBox(

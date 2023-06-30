@@ -13,7 +13,7 @@ import 'home.form.dart';
   FormTextField(name: 'litres'),
 ])
 class Home extends StatelessWidget with $HomeView {
-  Home({Key key}) : super(key: key);
+  Home({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -33,7 +33,7 @@ class Home extends StatelessWidget with $HomeView {
                       color: kcdeepGreen,
                     ),
                     onPressed: () {
-                      _scaffoldKey.currentState.openDrawer();
+                      _scaffoldKey.currentState?.openDrawer();
                     }),
               ),
               backgroundColor: kcdeepBlack,
@@ -120,7 +120,7 @@ class Home extends StatelessWidget with $HomeView {
                                                     //     .data
                                                     //     .toString());
 
-                                                    litresController.text =
+                                                    litresController?.text =
                                                         val.toStringAsFixed(2);
                                                   }),
                                             ),
@@ -209,7 +209,7 @@ class Home extends StatelessWidget with $HomeView {
                                                 double val =
                                                     double.parse(value) * 5.0;
                                                 // double.parse(snapshot.data.toString());
-                                                amountController.text =
+                                                amountController?.text =
                                                     val.toStringAsFixed(2);
                                                 print(value);
                                               },
@@ -242,8 +242,8 @@ class Home extends StatelessWidget with $HomeView {
                                          await model.processPaymentt(
                                           context: context,
                                           amount: int.parse(
-                                              amountController.text ??
-                                                  litresController.text *
+                                              amountController?.text ??
+                                                  litresController!.text *
                                                       int.parse(snapshot.data
                                                           .toString())),
                                           email: snapshot.data.toString(),
@@ -252,16 +252,16 @@ class Home extends StatelessWidget with $HomeView {
                                       
                                         await model.addFuel(
                                             amount: double.parse(
-                                                amountController.text),
+                                                amountController!.text),
                                             litre: double.parse(
-                                                litresController.text));
+                                                litresController!.text));
                                     },
                                     child: Text(
                                       'Pay',
                                       style: ktsBigBlack,
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                      primary: kcdeepGreen,
+                                      backgroundColor: kcdeepGreen,
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 30, vertical: 12),
                                     ),

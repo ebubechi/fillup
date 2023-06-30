@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'signup.form.dart';
-import 'signup_view_model.dart';
+// import 'signup_view_model.dart';
 
 @FormView(fields: [
   FormTextField(name: 'fullName'),
@@ -17,20 +17,20 @@ import 'signup_view_model.dart';
   FormTextField(name: 'password'),
 ])
 class SignUp extends StatelessWidget with $SignUpView {
-  SignUp({Key key}) : super(key: key);
+  SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
     var items = ['Buyer', 'Seller',];
     return ViewModelBuilder<SignUpViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+      onViewModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
         backgroundColor: kcdeepBlack,
           body: AuthenticationLayout(
         busy: model.isBusy,
         onMainButtonTapped: model.saveData,
         onBackPressed: model.navigateBack,
-        validationMessage: model.validationMessage,
+        validationMessage: model.validationMessage!,
         title: 'Sign Up',
         subtitle: '',
         mainButtonTitle: 'SIGN UP',
@@ -84,7 +84,8 @@ class SignUp extends StatelessWidget with $SignUpView {
           ],
         ),
         onMinorButtonTapped: model.navigateBack,
-        showTermsText: true,
+        showTermsText: true, onCreateAccountTapped: () {  }, 
+        onForgotPassword: () {  },
       )),
       viewModelBuilder: () => SignUpViewModel(),
     );

@@ -13,7 +13,7 @@ import 'adhome.form.dart';
   FormTextField(name: 'amountPerLitre'),
 ])
 class AdHome extends StatelessWidget with $AdHomeView {
-  AdHome({Key key}) : super(key: key);
+  AdHome({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -32,7 +32,8 @@ class AdHome extends StatelessWidget with $AdHomeView {
                     color: kcdeepGreen,
                   ),
                   onPressed: () {
-                    _scaffoldKey.currentState.openDrawer();
+                    // TODO: openDrawer
+                    _scaffoldKey.currentState!.openDrawer();
                   }),
             ),
             backgroundColor: kcdeepBlack,

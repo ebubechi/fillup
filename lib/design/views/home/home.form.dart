@@ -13,8 +13,8 @@ const String AmountValueKey = 'amount';
 const String LitresValueKey = 'litres';
 
 mixin $HomeView on StatelessWidget {
-  final TextEditingController amountController = TextEditingController();
-  final TextEditingController litresController = TextEditingController();
+  final TextEditingController? amountController = TextEditingController();
+  final TextEditingController? litresController = TextEditingController();
   final FocusNode amountFocusNode = FocusNode();
   final FocusNode litresFocusNode = FocusNode();
 
@@ -23,15 +23,15 @@ mixin $HomeView on StatelessWidget {
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
-    amountController.addListener(() => _updateFormData(model));
-    litresController.addListener(() => _updateFormData(model));
+    amountController?.addListener(() => _updateFormData(model));
+    litresController?.addListener(() => _updateFormData(model));
   }
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
         {
-          AmountValueKey: amountController.text,
-          LitresValueKey: litresController.text,
+          AmountValueKey: amountController?.text,
+          LitresValueKey: litresController?.text,
         },
       );
 
@@ -39,8 +39,8 @@ mixin $HomeView on StatelessWidget {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    amountController.dispose();
-    litresController.dispose();
+    amountController?.dispose();
+    litresController?.dispose();
   }
 }
 

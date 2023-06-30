@@ -90,7 +90,7 @@ class StackedRouter extends RouterBase {
     },
     Payment: (data) {
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => Payment(),
+        builder: (context) => Payment(title: '',),
         settings: data,
       );
     },

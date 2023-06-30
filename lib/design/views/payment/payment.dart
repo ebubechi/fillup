@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Payment extends StatefulWidget {
-  Payment({Key key, this.title}) : super(key: key);
+  Payment({super.key, required this.title});
 
   final String title;
 

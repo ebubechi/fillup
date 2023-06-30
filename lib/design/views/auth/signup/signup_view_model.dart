@@ -20,7 +20,7 @@ class SignUpViewModel extends AuthenticationViewModel {
   final _firestoreServices = locator<FirestoreService>();
   final _firebaseAuth = FirebaseAuth.instance;
 
-  String isUserAdmin;
+  String? isUserAdmin;
 
   SignUpViewModel() : super(successRoute: Routes.adhome);
 
@@ -51,6 +51,8 @@ class SignUpViewModel extends AuthenticationViewModel {
       default:
         throw("no such user!");
     }
+
+    throw Exception('something went wrong');
   }
 
   // bool isAdmin(userId) {
@@ -61,13 +63,13 @@ class SignUpViewModel extends AuthenticationViewModel {
   //   return false;
   // }
 
-  String get userID {
+  String? get userID {
     return _firebaseAuth.currentUser?.uid;
   }
 
   Future<void> createUserCollection() async {
     await _firestoreServices.createUser(Users(
-        id: userID,
+        id: userID!,
         fullName: fullNameValue,
         email: emailValue,
         userRole: dropdownValue));

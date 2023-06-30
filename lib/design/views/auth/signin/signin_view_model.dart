@@ -11,10 +11,10 @@ import 'signin.form.dart';
 class SignInViewModel extends AuthenticationViewModel {
   final _firebaseAuthenticationService =
       locator<FirebaseAuthenticationService>();
-  String isUserAdmin;
+  late String? isUserAdmin;
 
   // SignInViewModel() : super(successRoute: Routes.home);
-  SignInViewModel();
+  SignInViewModel({required super.successRoute});
 
   @override
   // ignore: missing_return
@@ -45,7 +45,10 @@ class SignInViewModel extends AuthenticationViewModel {
       default:
         throw("no such user!");
     }
+    
+    throw Exception('something went wrong');
   }
 
   void navigateToCreateAccount() => navigationService.navigateTo(Routes.signUp);
+
 }
